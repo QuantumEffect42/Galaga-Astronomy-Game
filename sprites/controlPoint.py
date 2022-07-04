@@ -1,9 +1,10 @@
+from bezier.controlHandlerMover import ControlHandlerMover
 from bezier.controlPointHandler import ControlPointHandler
 import pygame
 
 
 class ControlPoint(pygame.sprite.Sprite):
-    def __init__(self, x, y, color, qIndex, pIndex, controlPoints, controlHandlerMover: ControlPointHandler):
+    def __init__(self, x, y, color, qIndex, pIndex, controlPoints, controlHandlerMover: ControlHandlerMover):
         super(ControlPoint, self).__init__()
         self.controlPoints = controlPoints
         self.qIndex = qIndex
@@ -12,7 +13,7 @@ class ControlPoint(pygame.sprite.Sprite):
         self.originalImage = pygame.Surface((50, 50), pygame.SRCALPHA)
         pygame.draw.circle(self.originalImage, color, (25, 25), 10)
         self.selectedImage = pygame.Surface((50, 50), pygame.SRCALPHA)
-        pygame.draw.circle(self.selectedImage, color(25, 25), 10)
+        pygame.draw.circle(self.selectedImage, color, (25, 25), 10)
         pygame.draw.circle(self.selectedImage, (255, 255, 255), (25, 25), 10, 2)
         self.image = self.originalImage
         self.rect = self.image.get_rect(center=(x, y))
@@ -22,9 +23,9 @@ class ControlPoint(pygame.sprite.Sprite):
         pass
 
     def update(self, keys):
-        mousePos = pygame.mouse.getPos()
+        mousePos = pygame.mouse.get_pos()
         mouseButtons = pygame.mouse.get_pressed()
-        self.selected = self.rect.collidepoint(mouseButtons) and any(mouseButtons)
+        self.selected = self.rect.collidepoint(mousePos) and any(mouseButtons)
         self.image = self.selectedImage if self.selected else self.originalImage
 
         if self.selected:

@@ -37,7 +37,7 @@ class PathPointSelector():
             key = self.createKey(controlPointHandler.quartetIndex, controlPointHandler.controlPointIndex)
             return self.pathPointMapping[key]
         else:
-            print("error")
+            print("error in findRelatedPathPoint() in pathPointSelector")
             exit(1)
 
     def findRelatedControlPoint(self, controlPointHandler : ControlPointHandler):
@@ -80,7 +80,7 @@ class PathPointSelector():
 
     def findControlPointsOfPathPoint(self, pathPointHandler: ControlPointHandler):
         relatedControlPoints = []
-        numberOfQuartets = self.controlPointQuartetCollection.numQuartets
+        numberOfQuartets = self.controlPointQuartetCollection.numQuartets()
         lastQuartetIndex = numberOfQuartets - 1
 
         if pathPointHandler.controlPointIndex == 0:
@@ -101,7 +101,7 @@ class PathPointSelector():
                     relatedControlPoints.append(ControlPointHandler(pathPointHandler.quartetIndex + 1, 1))
 
         else:
-            print("error")
+            print("error in findControlPointsOfPathPoint() in pathPointSelector")
             exit(1)
 
         return relatedControlPoints

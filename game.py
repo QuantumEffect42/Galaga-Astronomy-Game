@@ -3,7 +3,7 @@ import constants
 
 
 class Game(object):
-    def __init__(self, screen, states, startState) -> None:
+    def __init__(self, screen, states, startState):
         self.done = False
         self.screen = screen
         self.clock = pygame.time.Clock()
@@ -31,7 +31,7 @@ class Game(object):
         self.state.update(dt)
     
     def draw(self):
-        self.screen.fill((0,0,0))
+        self.screen.fill((0, 0, 0))
         self.state.draw(self.screen)
 
     def run(self):

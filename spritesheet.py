@@ -8,7 +8,7 @@ class SpriteSheet:
             self.sheet.set_colorkey(-1, pygame.RLEACCEL)
         except pygame.error as e:
             print(f"Unable to load spritesheet image: {filename}")
-            raise SystemExit(e)
+            raise SystemExit(e)  # Note: raise is the same as throws in Java
 
     def imageAt(self, rectangle, colorKey=None):
         rect = pygame.Rect(rectangle)
@@ -24,6 +24,5 @@ class SpriteSheet:
         return [self.imageAt(rect, colorKey) for rect in rects]
 
     def loadStrip(self, rect, imageCount, colorKey=None):
-        for x in range(imageCount):
-            tups = [(rect[0] + rect[2] * x, rect[1], rect[2], rect[3])]
+        tups = [(rect[0] + rect[2] * x, rect[1], rect[2], rect[3]) for x in range(imageCount)]
         return self.imagesAt(tups, colorKey)

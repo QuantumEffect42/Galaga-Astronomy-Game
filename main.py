@@ -17,7 +17,7 @@ states = {
     "MENU": Menu(),
     "SPLASH": Splash(),
     "GAMEPLAY": Gameplay(),
-    "GAMEOVER": GameOver()
+    "GAME_OVER": GameOver()
 }
 
 game = Game(screen, states, "SPLASH")

@@ -27,7 +27,7 @@ class ControlHandlerMover():
             self.controlPointQuartetCollection.getControlPoint(relatedControlPoints[1]).y -= dy
 
         else:
-            relatedControlPoint = self.pathpointSelector.findRelatedPathPoint(controlPointHandler)
+            relatedControlPoint = self.pathpointSelector.findRelatedControlPoint(controlPointHandler)
             relatedPathPoint = self.pathpointSelector.findPathPointOfControlPoint(controlPointHandler)
 
             xDist = self.controlPointQuartetCollection.getControlPoint(relatedPathPoint).x - x

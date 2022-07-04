@@ -6,7 +6,7 @@ class GameOver(State):
     def __init__(self) -> None:
         super(GameOver, self).__init__()
         self.title = self.font.render("Game Over", True, pygame.Color("white"))
-        self.titleRect = self.title.get_rect(center = self.screenRect.center)
+        self.titleRect = self.title.get_rect(center=self.screenRect.center)
         self.instructions = self.font.render("Press R to restart, or enter to go to main menu", True, pygame.Color("white"))
         instructionsCenter = (self.screenRect.center[0], self.screenRect.center[1] + 50)
         self.instructionsRect = self.instructions.get_rect(center=instructionsCenter)
@@ -16,10 +16,10 @@ class GameOver(State):
             self.quit = True
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RETURN:
-                self.next_state = "MENU"
+                self.nextState = "MENU"
                 self.done = True
             elif event.key == pygame.K_r:
-                self.next_state = "GAMEPLAY"
+                self.nextState = "GAMEPLAY"
                 self.done = True
             elif event.key == pygame.K_ESCAPE:
                 self.quit = True

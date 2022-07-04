@@ -22,7 +22,7 @@ FREEZE = pygame.USEREVENT + 3
 
 
 class Gameplay(State):
-    def __init__(self) -> None:
+    def __init__(self):
         super(Gameplay, self).__init__()
         pygame.time.set_timer(ADDENEMY, 450)
         pygame.time.set_timer(ENEMYSHOOTS, 1000)
@@ -60,7 +60,6 @@ class Gameplay(State):
         self.showControl = False
         self.mover.allignAll()
 
-
     def startup(self):
         pygame.mixer.music.load("./assets/sounds/02 Start Music.mp3")
         pygame.mixer.music.play()
@@ -82,11 +81,13 @@ class Gameplay(State):
         self.mover.allignAll()
 
     def addControlPoints(self):
-        for quartetIndex in range(self.controlPoints1. numQuartets()):
+        for quartetIndex in range(self.controlPoints1.numQuartets()):
             for pointIndex in range(4):
                 quartet = self.controlPoints1.getQuartet(quartetIndex)
                 point = quartet.getPoint(pointIndex)
-                self.controlSprites.add(ControlPoint(point.x, point.y, (255, 120, 120), quartetIndex, pointIndex, self.controlPoints1, self.mover))
+                self.controlSprites.add(
+                    ControlPoint(point.x, point.y, (255, 120, 120), quartetIndex, pointIndex, self.controlPoints1,
+                                 self.mover))
 
     def getEvent(self, event):
         for entity in self.allSprites:
@@ -161,7 +162,7 @@ class Gameplay(State):
                 rocket.rect.centerx = startRocket[0]
                 rocket.rect.centery = startRocket[1]
 
-                self.enemyRockets.add(Rocket)
+                self.enemyRockets.add(rocket)
                 self.allSprites.add(rocket)
 
     def draw(self, screen):
@@ -214,7 +215,8 @@ class Gameplay(State):
             if previousPathPoint is None:
                 previousPathPoint = pathPoint
 
-            pygame.draw.line(screen, (255, 255, 255), (previousPathPoint.xpos, previousPathPoint.ypos), (pathPoint.xpos, pathPoint.ypos))
+            pygame.draw.line(screen, (255, 255, 255), (previousPathPoint.xpos, previousPathPoint.ypos),
+                             (pathPoint.xpos, pathPoint.ypos))
             previousPathPoint = pathPoint
             bezierTimer += 0.05
 
@@ -224,12 +226,11 @@ class Gameplay(State):
 
     def drawScore(self, screen):
         score = self.font.render("SCORE", True, (255, 20, 20))
-        screen.blit(score, (constants.SPRITE_SHEET / 2 - 300 - score.get_rect().width / 2, 10))
+        screen.blit(score, (constants.SCREEN_WIDTH / 2 - 300 - score.get_rect().width / 2, 10))
         score = self.font.render(str(self.score), True, (255, 255, 255))
-        screen.blit(score, (constants.SCREEN_WIDTH / 2 -- 300 - score.get_rect().width / 2, 40))
+        screen.blit(score, (constants.SCREEN_WIDTH / 2 - 300 - score.get_rect().width / 2, 40))
 
         score = self.font.render("HIGH SCORE", True, (255, 20, 20))
-        screen.blit(score (constants.SCREEN_WIDTH / 2 - score.get_rect().width / 2, 10))
+        screen.blit(score, (constants.SCREEN_WIDTH / 2 - score.get_rect().width / 2, 10))
         score = self.font.render(str(self.highScore), True, (255, 255, 255))
         screen.blit(score, (constants.SCREEN_WIDTH / 2 - score.get_rect().width / 2, 40))
-
